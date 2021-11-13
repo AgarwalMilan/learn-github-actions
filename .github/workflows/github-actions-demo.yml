@@ -14,5 +14,10 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-      - run: echo ${{ secrets.TEST_PASSWORD }}
+      - name: Retrieve Secret
+        env:
+          pwd: ${{ secrets.TEST_PASSWORD }}
+        run: echo "$pwd"
+      - run: echo "password in another step $pwd"
+      - run: echo "Secret ${{ secrets.TEST_PASSWORD }}"
       - run: echo "🍏 This job's status is ${{ job.status }}."
